@@ -3,24 +3,27 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 
 export const TaskContainer = styled.div`
   width: 100%;
-  height: 72px;
+  height: fit-content;
+  min-height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: ${(props) => props.theme.colors['gray-500']};
   border-radius: 8px;
-  padding: 0 1rem;
+  padding: 1rem;
 
   label {
     font-size: 0.875rem;
     color: ${(props) => props.theme.colors['gray-100']};
+    flex: 1;
+    margin-top: -0.1rem;
   }
 `;
 
 export const InputContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 
 export const CheckboxContainer = styled(Checkbox.Root)`
