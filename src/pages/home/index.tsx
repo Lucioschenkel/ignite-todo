@@ -73,7 +73,7 @@ export function Home() {
             </HeaderText>
           </TaskListHeader>
           {tasks.length > 0 ? (
-            <TaskList>
+            <TaskList data-testid="tasks">
               {tasks.map((task) => (
                 <Task key={task.id} task={task} />
               ))}

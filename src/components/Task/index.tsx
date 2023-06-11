@@ -13,7 +13,7 @@ import { TodoContext } from '../../contexts/TodoContext';
 type TaskProps = {
   task: {
     done: boolean;
-    id: number;
+    id: string;
     title: string;
   };
 };
@@ -23,7 +23,7 @@ export function Task({ task }: TaskProps) {
   const { id, done, title } = task;
 
   return (
-    <TaskContainer>
+    <TaskContainer data-testid="task">
       <InputContainer>
         <CheckboxContainer
           id={`task-${id}`}
