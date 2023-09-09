@@ -19,6 +19,24 @@ describe('HomePage', () => {
     renderWithProviders(<Home />);
   });
 
+  it('adds a task', async () => {
+    const input = screen.getByRole('textbox');
+    const submit = screen.getByRole('button');
+
+    const task = 'First task';
+
+    await addTask(input, task, submit);
+
+    const list = screen.getByTestId('tasks');
+    const rows = within(list).getAllByTestId('task');
+
+    expect(rows).toHaveLength(1);
+
+    const checkbox = screen.getByLabelText(task);
+
+    expect(checkbox).toBeVisible();
+  });
+
   it('adds three tasks, deletes one, adds another and toggles the last', async () => {
     const input = screen.getByRole('textbox');
     const submit = screen.getByRole('button');
@@ -28,8 +46,6 @@ describe('HomePage', () => {
     for (const task of tasks) {
       await addTask(input, task, submit);
     }
-
-    
 
     const list = screen.getByTestId('tasks');
 
@@ -49,12 +65,12 @@ describe('HomePage', () => {
 
     const checkboxes = screen.getAllByRole('checkbox');
 
-    const lastTask = checkboxes[checkboxes.length -1];
-    
+    const lastTask = checkboxes[checkboxes.length - 1];
+
     await user.click(lastTask);
-    
+
     const done = screen.getByRole('checkbox', {
-      name: /task 4/i
+      name: /task 4/i,
     });
 
     expect(done).toBeVisible();
